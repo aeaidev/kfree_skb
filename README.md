@@ -24,7 +24,7 @@ clang -g -O2 -target bpf -c kfree_skb.bpf.c -o kfree_skb.bpf.o
 
 ## Run (load + auto-attach)
 ```bash path=null start=null
-sudo bpftool prog loadall kfree_skb.bpf.o /sys/fs/bpf/kfree_skb_test autoattach
+sudo bpftool prog loadall kfree_skb.bpf.o /sys/fs/bpf/kfree_skb_test pinmaps /sys/fs/bpf/kfree_skb_maps autoattach
 ```
 
 ## Observe output
@@ -43,10 +43,16 @@ You should see lines like:
 bpf_trace_printk: kfree_skb: reason=3 (NO_SOCKET)
 bpf_trace_printk: kfree_skb: reason=4 (SOCKET_CLOSE)
 ```
+## Print socket drop statistics (end of run)
+After traffic generation, print aggregated counts per socket drop reason:
+```bash path=null start=null
+python3 print_socket_drop_stats.py
+```
 
 ## Cleanup
 ```bash path=null start=null
 sudo rm -rf /sys/fs/bpf/kfree_skb_test
+sudo rm -rf /sys/fs/bpf/kfree_skb_maps
 ```
 
 ## Notes
