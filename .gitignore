@@ -1,0 +1,30 @@
+# Rust build artifacts
+/target/
+Cargo.lock
+**/*.rs.bk
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build outputs
+*.o
+*.a
+*.so
+*.dylib
+
+# eBPF specific
+*.bpf.o
+vmlinux.h.bak
+
+# Environment
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.log

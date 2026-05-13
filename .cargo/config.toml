@@ -1,0 +1,6 @@
+[build]
+# Build settings
+target-dir = "target"
+
+[alias]
+ebpf = "build -p kfree_skb_ebpf --target bpf --release"
